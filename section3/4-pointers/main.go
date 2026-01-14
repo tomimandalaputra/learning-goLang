@@ -27,7 +27,8 @@ func main() {
 
 	grade := 80
 	gradePtr := &grade
-	fmt.Printf("gradePtr: %+v\n", gradePtr)
-	fmt.Printf("new Pointer: %+v\n", &gradePtr)
-	fmt.Printf("dereference: %+v\n", *(&gradePtr))
+	fmt.Printf("value grade: %+v\n", grade)
+	fmt.Printf("memory addr [gradePtr -> *int]: %+v\n", gradePtr)
+	fmt.Printf("memory addr [&gradePtr -> **int]: %+v\n", &gradePtr)
+	fmt.Printf("memory addr [*(&gradePtr) -> *int]: %+v\n", *(&gradePtr))
 }
