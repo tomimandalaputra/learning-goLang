@@ -47,8 +47,14 @@ func TestCheckUsernameTableWithSubtest(t *testing.T) {
 	}
 }
 
-func TestLogin(t *testing.T) {
+func TestLoginSuccess(t *testing.T) {
 	err, ok := Login("testusername")
 	assert.NoError(t, err)
 	assert.True(t, ok)
+}
+
+func TestLoginFailure(t *testing.T) {
+	err, ok := Login("name")
+	assert.Error(t, err)
+	assert.False(t, ok)
 }
