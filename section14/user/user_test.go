@@ -1,12 +1,13 @@
 package user
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestCheckUsername(t *testing.T) {
-	got := CheckUsername("testing")
-	if got != true {
-		t.Errorf("got %v\nwant %v", got, true)
-	}
+	assert.True(t, CheckUsername("test123"))
 }
 
 func TestCheckUsernameTable(t *testing.T) {
@@ -23,9 +24,7 @@ func TestCheckUsernameTable(t *testing.T) {
 
 	for _, tc := range testCases {
 		got := CheckUsername(tc.input)
-		if got != tc.want {
-			t.Errorf("got %v\nwant %v", got, tc.want)
-		}
+		assert.Equal(t, tc.want, got, "got %v\nwant %v", got, tc.want)
 	}
 }
 func TestCheckUsernameTableWithSubtest(t *testing.T) {
@@ -43,9 +42,13 @@ func TestCheckUsernameTableWithSubtest(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := CheckUsername(tc.input)
-			if got != tc.want {
-				t.Fatalf("got %v\nwant %v", got, tc.want)
-			}
+			assert.Equal(t, tc.want, got, "got %v\nwant %v", got, tc.want)
 		})
 	}
+}
+
+func TestLogin(t *testing.T) {
+	err, ok := Login("testusername")
+	assert.NoError(t, err)
+	assert.True(t, ok)
 }
